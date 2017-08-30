@@ -246,7 +246,24 @@ puts remove_letter_a(words_2) == without_a_2
 # Days are the index of the calendar array.
 
 def care_bear_summary(calendar_of_hugs)
+  hugs = {}
+  current_bear = calendar_of_hugs[0]
+  current_idx = 0
 
+  calendar_of_hugs.each_with_index do |bear, idx|
+
+    unless current_bear == bear
+      if idx - 1 != current_idx
+        hugs[current_bear] = [] unless hugs[current_bear]
+        hugs[current_bear] << [current_idx, idx - 1]
+      end
+
+      current_bear = bear
+      current_idx = idx
+    end
+  end
+
+  hugs
 end
 
 puts "-------Care Bear Summary-------"
@@ -282,4 +299,6 @@ care_bear_counts_2 = {
 }
 
 puts care_bear_summary(hug_calendar_1) == care_bear_counts_1
+# p care_bear_summary(hug_calendar_1)
 puts care_bear_summary(hug_calendar_2) == care_bear_counts_2
+# p care_bear_summary(hug_calendar_2)
