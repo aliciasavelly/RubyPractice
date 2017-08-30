@@ -161,7 +161,7 @@ end
 
 def sum_array(array)
   array.inject do |sum, n|
-    sum += n;
+    sum += n
   end
 end
 
@@ -173,6 +173,7 @@ puts xbonacci([1, 1, 1], 6) == [1, 1, 1, 3, 5, 9]
 puts xbonacci([1, 1, 1, 1], 8) == [1, 1, 1, 1, 4, 7, 13, 25]
 puts xbonacci([1, 1, 1, 1, 1, 1], 10) == [1, 1, 1, 1, 1, 1, 6, 11, 21, 41]
 puts xbonacci([0, 0, 0, 0, 1], 10) == [0, 0, 0, 0, 1, 1, 2, 4, 8, 16]
+puts xbonacci([10, 10, 10], 10)
 
 
 #  Cupcake Solver
@@ -198,12 +199,17 @@ puts xbonacci([0, 0, 0, 0, 1], 10) == [0, 0, 0, 0, 1, 1, 2, 4, 8, 16]
 
 
 def cupcake_solver(cupcake_counts, number_of_students_in_class)
-
+  cupcake_counts.unshift(0)
+  
+  cupcake_counts.inject do |sum, count|
+    sum += (count / number_of_students_in_class)
+  end
 end
 
 
 puts "-------Cupcake Solver-------"
 puts cupcake_solver([10, 10, 10], 5) == 6
+# puts cupcake_solver([10, 10, 10], 5)
 puts cupcake_solver([25, 27, 30], 5) == 16
 puts cupcake_solver([32, 27, 28], 20) == 3
 puts cupcake_solver([32, 27, 28, 24], 20) == 4
