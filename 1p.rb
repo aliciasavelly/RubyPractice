@@ -78,7 +78,36 @@ puts word_with_most_repeats('ooooooooooh tutu') == 'tutu'
 # same position.
 
 def isogram_matcher(isogram1, isogram2)
+  repeats = Set.new()
+  exact_repeats = 0
+  other_repeats = 0
 
+  i = 0
+
+  while i < isogram1.length
+    char1 = isogram1[i]
+    char2 = isogram2[i]
+
+    if char1 == char2
+      exact_repeats += 1
+    else
+      if repeats.include?(char1)
+        other_repeats += 1
+      else
+        repeats.add(char1)
+      end
+
+      if repeats.include?(char2)
+        other_repeats += 1
+      else
+        repeats.add(char2)
+      end
+    end
+
+    i += 1
+  end
+
+  [exact_repeats, other_repeats]
 end
 
 puts "-------Isogram Matcher-------"
