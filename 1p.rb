@@ -146,11 +146,23 @@ puts isogram_matcher("unpredictably", "hydromagnetic") == [1, 8]
 # In the code, number_of_fibonacci_numbers_to_return is the same as N.
 
 def xbonacci(starting_sequence, number_of_xbonacci_numbers_to_return)
+  sum = sum_array(starting_sequence)
+  result = starting_sequence
 
+  i = 0
+  while result.length < number_of_xbonacci_numbers_to_return
+    result << sum
+    sum = sum * 2 - result[i]
+    i += 1
+  end
+
+  result
 end
 
 def sum_array(array)
-
+  array.inject do |sum, n|
+    sum += n;
+  end
 end
 
 # p sum_array([1, 3, 7])
