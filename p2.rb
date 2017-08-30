@@ -7,7 +7,9 @@
 # the greatest common factor of 10 and 15 is 5
 
 def greatest_common_factor(first_number, second_number)
-
+  first_number.downto(1).each do |n|
+    return n if second_number % n == 0 && first_number % n == 0
+  end
 end
 
 puts "-------Greatest Common Factor-------"
