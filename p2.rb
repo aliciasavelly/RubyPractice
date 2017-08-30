@@ -1,4 +1,4 @@
-
+require 'set'
 # Greatest Common Factor
 # ------------------------------------------------------------------------------
 # Return the greatest number which is a factor of both inputs.
@@ -54,7 +54,6 @@ landmarks_2 = ["Tree", "Mountain", "Ocean", "Cottage"]
 pairs_2 = [["Tree", "Mountain"], ["Mountain", "Ocean"], ["Ocean", "Cottage"], ["Cottage", "Tree"]]
 
 puts panoramic_pairs(landmarks_2) == pairs_2
-# puts panoramic_pairs(landmarks_2)
 
 
 # Two Degrees of Separation
@@ -67,7 +66,22 @@ puts panoramic_pairs(landmarks_2) == pairs_2
 # of their friends. Do not include the original person or their immediate friends.
 
 def two_degrees_away(facebook, name)
+  friends = []
+  first_friends = Set.new()
 
+  facebook[name].each do |friend|
+    first_friends.add(friend)
+  end
+
+  first_friends.each do |first_friend|
+    far_friends = facebook[first_friend]
+
+    far_friends.each do |friend|
+      friends << friend if (friend != name && !first_friends.include?(friend))
+    end
+  end
+
+  friends
 end
 
 
@@ -96,6 +110,7 @@ facebook_2 = {
 friends_2 = ["Tyler Winklevoss", "Cameron Winklevoss"]
 
 puts two_degrees_away(facebook_2, "Mark Zuckerberg") == friends_2
+# p two_degrees_away(facebook_2, "Mark Zuckerberg")
 
 
 # Assign Pods
@@ -110,7 +125,18 @@ puts two_degrees_away(facebook_2, "Mark Zuckerberg") == friends_2
 # if there aren't enough students.
 
 def assign_pods(students, pods)
+  assignments = {}
 
+  i = -1
+  students.each_with_index do |student, idx|
+    if idx % 4 == 0
+      i += 1
+      assignments[pods[i]] = []
+    end
+    assignments[pods[i]] << student
+  end
+
+  assignments
 end
 
 puts "-------Assign Pods-------"
