@@ -29,7 +29,18 @@ puts greatest_common_factor(4, 8) == 4
 # Assume the panorama wraps around.
 
 def panoramic_pairs(landmarks)
+  result = []
+  len = landmarks.length
 
+  landmarks.each_with_index do |landmark, idx|
+    if idx + 1 == len
+      result << [landmark, landmarks[0]]
+    else
+      result << [landmark, landmarks[idx + 1]]
+    end
+  end
+
+  result
 end
 
 puts "-------Panoramic Pairs-------"
@@ -43,6 +54,7 @@ landmarks_2 = ["Tree", "Mountain", "Ocean", "Cottage"]
 pairs_2 = [["Tree", "Mountain"], ["Mountain", "Ocean"], ["Ocean", "Cottage"], ["Cottage", "Tree"]]
 
 puts panoramic_pairs(landmarks_2) == pairs_2
+# puts panoramic_pairs(landmarks_2)
 
 
 # Two Degrees of Separation
