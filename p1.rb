@@ -1,22 +1,4 @@
 require 'set'
-# ------------------------------------------------------------------------------
-# Instructions
-# ------------------------------------------------------------------------------
-# This file is in the same format as your assessments.
-#
-# Make sure everything puts out as 'true' when you run the file.
-#
-# Give yourself 15 minutes per problem.  When time is up, make sure you don't
-# have any unexpected `end`s or infinite loops that would keep your code from
-# running.
-#
-# Rename the file to be your firstname and lastname.
-#
-# Do not use the internet.  If you forget a particular ruby method, write it yourself.
-#
-# Look at the test cases below the problem before you approach it.
-# Use the debugger when code doesn't run how you expect.
-# ------------------------------------------------------------------------------
 
 # Word With Most Repeats
 # ------------------------------------------------------------------------------
@@ -200,7 +182,7 @@ puts xbonacci([10, 10, 10], 10)
 
 def cupcake_solver(cupcake_counts, number_of_students_in_class)
   cupcake_counts.unshift(0)
-  
+
   cupcake_counts.inject do |sum, count|
     sum += (count / number_of_students_in_class)
   end
