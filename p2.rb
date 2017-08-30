@@ -209,11 +209,17 @@ puts assign_pods(students_2, pods_2) == expected_pod_assignment_2
 # words.
 
 def remove_letter_a(words)
+  result = []
 
+  words.each do |word|
+    result << remove_a(word)
+  end
+
+  result
 end
 
 def remove_a(word)
-
+  word.gsub(/a/, "")
 end
 
 puts "-------Remove Letter 'A'-------"
