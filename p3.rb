@@ -7,6 +7,10 @@ def in_all_strings?(long_strings, short_string)
 
 end
 
+def substring(str1, str2)
+  
+end
+
 puts "---------In All Strings-------"
 puts in_all_strings?(["thisisaverylongstring", "thisisanotherverylongstring"], "sisa") == true
 puts in_all_strings?(["thisisaverylongstring", "thisisanotherverylongstring"], "isan") == false
