@@ -7,7 +7,13 @@
 # Assume there is always at least one bid below the retail price.
 
 def price_is_right(bids, actual_retail_price)
+  best_bid = -1
 
+  bids.each do |bid|
+    best_bid = bid if bid <= actual_retail_price && bid > best_bid
+  end
+
+  best_bid
 end
 
 puts "-------Price is Right-------"
