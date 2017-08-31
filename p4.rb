@@ -1,28 +1,3 @@
-### # 3:45 - 4:16
-## 31 minutes
-
-# ------------------------------------------------------------------------------
-# Instructions
-# ------------------------------------------------------------------------------
-# This file is in the same format as your assessments.
-#
-# Make sure everything puts out as 'true' when you run the file.
-#
-# Give yourself an hour to complete this assessment.
-# When time is up, make sure you don't have any unexpected `end`s or infinite loops
-# that would keep your code from running.
-#
-# Rename the file to be your firstname and lastname.
-#
-# Do not use the internet.  If you forget a particular ruby method, write it yourself.
-#
-# Test your code with a few cases in addition to the ones we give
-# you.  When we grade you, we use different test cases to make sure your logic
-# is sound.
-#
-# Look at the test cases below the problem before you approach it.
-# Use the debugger when code doesn't run how you expect.
-# ------------------------------------------------------------------------------
 
 # Price is Right
 # ------------------------------------------------------------------------------
@@ -32,12 +7,7 @@
 # Assume there is always at least one bid below the retail price.
 
 def price_is_right(bids, actual_retail_price)
-  result = -1
 
-  bids.each do |bid|
-    result = bid if bid > result && bid < actual_retail_price
-  end
-  result
 end
 
 puts "-------Price is Right-------"
@@ -54,19 +24,11 @@ puts price_is_right([950, 850, 1000, 1], 1300) == 1000
 # Assume n must be at least 1
 
 def total_product_sequence(n)
-  base = [1, 2, 3]
-  until base.length > n
-    base << sum_array(base)
-    # p base
-  end
-  base[n - 1]
+
 end
 
 def sum_array(array)
-  sum = array.inject do |sum, num|
-    sum *= num
-  end
-  sum
+
 end
 
 
@@ -105,17 +67,11 @@ puts total_product_sequence(8) == 2821109907456 # etc...
 #
 
 def products_except_me(numbers)
-  result = []
-  (0...numbers.length).each do |n|
-    result << (product(numbers) / numbers[n])
-  end
-  result
+
 end
 
 def product(array)
-  array.inject do |sum, num|
-    sum *= num
-  end
+
 end
 
 puts "-------Products Except Me-------"
@@ -135,16 +91,7 @@ puts products_except_me([7, 2, 1, 4]) == [8, 28, 56, 14]
 #
 
 def fall_and_winter_birthdays(students_with_birthdays)
-  late_birthdays = students_with_birthdays.select do |student, month|
-    month > 6
-  end
-  result = []
-  late_birthdays.each do |person1, month1|
-    late_birthdays.each do |person2, month2|
-      result << [person1, person2] if person1 != person2 && !result.include?([person1, person2]) && !result.include?([person2, person1])
-    end
-  end
-  result
+
 end
 
 students_with_birthdays_1 = [
@@ -198,22 +145,11 @@ puts fall_and_winter_birthdays(students_with_birthdays_2) == second_half_birthda
 # factors (1, 2, 4, 8, 16) and the others have fewer than five factors.
 
 def more_than_n_factors(numbers, n)
-  result = []
 
-  numbers.each do |number|
-    if find_num_factors(number) >= n
-      result << number
-    end
-  end
-  result
 end
 
 def find_num_factors(number)
-  num_factors = 0
-  (1..number).each do |num|
-    num_factors += 1 if number % num == 0
-  end
-  num_factors
+
 end
 
 # p find_num_factors(16)
@@ -237,13 +173,7 @@ puts more_than_n_factors([20, 36, 39, 16], 6) == [20, 36]
 # subtract them out.
 
 def one_week_wonders(songs)
-  new_songs = songs.dup
-  songs.each_with_index do |song, idx|
-    if song == songs[idx + 1]
-      new_songs.delete (song)
-    end
-  end
-  new_songs.uniq
+
 end
 
 top_hits_1 = ["Call Me Maybe", "Protect Ya Neck", "Call Me Maybe", "Protect Ya Neck", "Protect Ya Neck"]
@@ -263,28 +193,11 @@ puts one_week_wonders(top_hits_2) == one_week_wonders_2
 # Ignore capitalization and punctuation.
 
 def can_tweak_sign?(normal_sign, vandalized_sign)
-  vandalized_sign_hash = create_hash(vandalized_sign)
-  normal_sign_hash = create_hash(normal_sign)
-  vandalized_sign_hash[" "] = 1
-  normal_sign_hash[" "] = 1
 
-  vandalized_sign_hash.each do |letter, quantity|
-    return false if normal_sign_hash[letter] == nil || vandalized_sign_hash[letter] > normal_sign_hash[letter]
-  end
-  true
 end
 
 def create_hash(sign)
-  sign_hash = {}
-  split_sign = sign.downcase.split("")
-  split_sign.each do |letter|
-    if sign_hash[letter] == nil
-      sign_hash[letter] = 1
-    else
-      sign_hash[letter] += 1
-    end
-  end
-  sign_hash
+
 end
 
 puts "-------Sign Tweakers-------"
@@ -300,20 +213,7 @@ puts can_tweak_sign?("Choose the bread of life or you are toast", "Teacher farts
 #
 
 def repeated_number_ranges(numbers)
-    start_idx = nil
-    current_idx = 0
-    result = []
 
-    numbers.each_with_index do |number, idx|
-      if number == numbers[idx + 1] && start_idx == nil
-        start_idx = idx
-      elsif start_idx != nil && number != numbers[idx + 1]
-        result << [start_idx, current_idx]
-        start_idx = nil
-      end
-      current_idx += 1
-    end
-    result
 end
 
 puts "-------Repeated Number Ranges-------"
@@ -322,9 +222,3 @@ puts repeated_number_ranges([1, 2, 3, 3, 4]) == [[2, 3]]
 puts repeated_number_ranges([1, 2, 3, 3, 4, 4]) == [[2, 3], [4, 5]]
 puts repeated_number_ranges([1, 1, 1, 2, 3, 3, 4]) == [[0, 2], [4, 5]]
 puts repeated_number_ranges([8, 7, 7, 14, 12, 12, 12, 12, 21]) == [[1, 2], [4, 7]]
-
-
-
-
-
-
