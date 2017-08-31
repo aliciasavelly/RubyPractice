@@ -81,11 +81,18 @@ puts total_product_sequence(8) == 2821109907456 # etc...
 #
 
 def products_except_me(numbers)
+  total_product = product(numbers)
+  result = []
 
+  numbers.each do |n|
+    result << total_product / n
+  end
+
+  result
 end
 
 def product(array)
-
+  array.inject { |product, n| product *= n }
 end
 
 puts "-------Products Except Me-------"
@@ -105,7 +112,20 @@ puts products_except_me([7, 2, 1, 4]) == [8, 28, 56, 14]
 #
 
 def fall_and_winter_birthdays(students_with_birthdays)
+  len = students_with_birthdays.length
+  result = []
 
+  students_with_birthdays.each_with_index do |student1, idx|
+    if student1[1] > 6
+      # p student1[1]
+      ((idx + 1)..len).each do |idx2|
+        p idx2
+        result << [student1[0], students_with_birthdays[idx2][0]] if students_with_birthdays[idx2][1] > 6
+      end
+    end
+  end
+
+  result
 end
 
 students_with_birthdays_1 = [
@@ -145,6 +165,8 @@ second_half_birthday_pairs_2 = [
 ]
 
 puts "-------Fall and Winter Birthdays-------"
+p fall_and_winter_birthdays(students_with_birthdays_1)
+p fall_and_winter_birthdays(students_with_birthdays_2)
 puts fall_and_winter_birthdays(students_with_birthdays_1) == second_half_birthday_pairs_1
 puts fall_and_winter_birthdays(students_with_birthdays_2) == second_half_birthday_pairs_2
 
