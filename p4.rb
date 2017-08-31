@@ -30,14 +30,22 @@ puts price_is_right([950, 850, 1000, 1], 1300) == 1000
 # Assume n must be at least 1
 
 def total_product_sequence(n)
+  return n if n < 4
 
+  arr = [1, 2, 3, 6]
+
+  while arr.length < n
+    arr << sum_array(arr)
+  end
+
+  arr.last
 end
 
 def sum_array(array)
-
+  array[-1] ** 2
 end
 
-
+# p sum_array([1, 2, 3, 14])
 
 puts "-------Total Product Sequence-------"
 puts total_product_sequence(1) == 1
