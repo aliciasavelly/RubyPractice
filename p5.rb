@@ -141,19 +141,22 @@ puts abundant?(20000) == true
 
 
 def save_the_prisoner(n, m, id)
+  to_warn = (id + m - 1) % n
 
+  return to_warn == 0 ? n : to_warn
 end
 
-
-
 # puts save_the_prisoner(99, 99, 3)
+
 puts "-------Save The Prisoners-------"
 puts save_the_prisoner(5,2,1) == 2
 puts save_the_prisoner(99, 99, 1) == 99
 puts save_the_prisoner(49, 98, 2) == 1
 puts save_the_prisoner(94431605, 679262176, 5284458) == 23525398
-
-# (m % n) + id - 1
+p save_the_prisoner(5,2,1) # == 2
+p save_the_prisoner(99, 99, 1) # == 99
+p save_the_prisoner(49, 98, 2) # == 1
+p save_the_prisoner(94431605, 679262176, 5284458) # == 23525398
 
 
 ##################
