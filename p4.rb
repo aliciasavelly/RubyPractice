@@ -179,15 +179,27 @@ puts fall_and_winter_birthdays(students_with_birthdays_2) == second_half_birthda
 # factors (1, 2, 4, 8, 16) and the others have fewer than five factors.
 
 def more_than_n_factors(numbers, n)
+  result = []
 
+  numbers.each do |number|
+    result << number if find_num_factors(number) > n
+  end
+
+  result
 end
 
 def find_num_factors(number)
+  total_factors = 0
 
+  (1..number).each do |n|
+    total_factors += 1 if number % n == 0
+  end
+
+  total_factors
 end
 
 # p find_num_factors(16)
-# p find_num_factors()
+# p find_num_factors(10)
 
 puts "-------More Than N Factors-------"
 puts more_than_n_factors([1, 3, 10, 16], 5) == [16]
