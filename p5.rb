@@ -14,16 +14,26 @@
 # "n" occurs three times, but the first is at index 2 and the last is at index 4
 
 def first_last_indices(str)
+  result = {}
 
+  str.each_char.with_index do |char, idx|
+    if result[char]
+      result[char][1] = idx
+    else
+      result[char] = [idx]
+    end
+  end
+
+  result
 end
 
-def first_occurance(str, c)
-
-end
-
-def last_occurance(str, c)
-
-end
+# def first_occurance(str, c)
+#
+# end
+#
+# def last_occurance(str, c)
+#
+# end
 
 
 puts "-------First Last Indices-------"
@@ -41,7 +51,19 @@ puts first_last_indices("racecar") == {"r" => [0, 6], "a" => [1, 5], "c" => [2, 
 # and false if they are not.
 
 def anagrams?(str1, str2)
+  letters = {}
 
+  str1.each_char do |char|
+    letters[char] = letters[char] ? letters[char] + 1 : 1
+  end
+
+  str2.each_char do |char|
+    return false unless lettesr[char]
+
+    
+  end
+
+  letters.size == 0
 end
 
 puts "-------Anagrams-------"
