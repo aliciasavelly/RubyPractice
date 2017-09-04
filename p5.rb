@@ -89,15 +89,21 @@ puts anagrams?("meat master", "team stream") == true
 
 
 def abundant?(num)
-
+  sum_array(find_divisors(num)) > num
 end
 
 def find_divisors(num)
+  divisors = []
 
+  (1..num / 2).each do |divisor|
+    divisors << divisor if num % divisor == 0
+  end
+
+  divisors
 end
 
 def sum_array(array)
-
+  array.inject { |sum, n| sum += n }
 end
 
 # p sum_array([1, 2, 3, 4, 5])
