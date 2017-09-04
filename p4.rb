@@ -217,9 +217,25 @@ puts more_than_n_factors([20, 36, 39, 16], 6) == [20, 36]
 #
 # Suggested strategy: find the songs that show up multiple times in a row and
 # subtract them out.
+require 'set'
 
 def one_week_wonders(songs)
+  repeats = Set.new()
+  songs_set = Set.new()
+  wonders = []
+  prev = nil
 
+  songs.each do |song|
+    repeats.add(song) if song == prev
+    prev = song
+  end
+
+  songs.each do |song|
+    wonders << song unless repeats.include?(song) || songs_set.include?(song)
+    songs_set.add(song)
+  end
+
+  wonders
 end
 
 top_hits_1 = ["Call Me Maybe", "Protect Ya Neck", "Call Me Maybe", "Protect Ya Neck", "Protect Ya Neck"]
@@ -229,6 +245,8 @@ top_hits_2 = ["Beat It", "Beat It", "Careless Whisper", "Beat It", "Baby", "Baby
 one_week_wonders_2 = ["Careless Whisper", "Never Gonna Give You Up"]
 
 puts "-------One Week Wonders-------"
+p one_week_wonders(top_hits_1)
+p one_week_wonders(top_hits_2)
 puts one_week_wonders(top_hits_1) == one_week_wonders_1
 puts one_week_wonders(top_hits_2) == one_week_wonders_2
 
