@@ -117,9 +117,7 @@ def fall_and_winter_birthdays(students_with_birthdays)
 
   students_with_birthdays.each_with_index do |student1, idx|
     if student1[1] > 6
-      # p student1[1]
-      ((idx + 1)..len).each do |idx2|
-        p idx2
+      ((idx + 1)...len).each do |idx2|
         result << [student1[0], students_with_birthdays[idx2][0]] if students_with_birthdays[idx2][1] > 6
       end
     end
@@ -165,8 +163,8 @@ second_half_birthday_pairs_2 = [
 ]
 
 puts "-------Fall and Winter Birthdays-------"
-p fall_and_winter_birthdays(students_with_birthdays_1)
-p fall_and_winter_birthdays(students_with_birthdays_2)
+# p fall_and_winter_birthdays(students_with_birthdays_1)
+# p fall_and_winter_birthdays(students_with_birthdays_2)
 puts fall_and_winter_birthdays(students_with_birthdays_1) == second_half_birthday_pairs_1
 puts fall_and_winter_birthdays(students_with_birthdays_2) == second_half_birthday_pairs_2
 
