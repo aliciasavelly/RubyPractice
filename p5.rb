@@ -58,9 +58,11 @@ def anagrams?(str1, str2)
   end
 
   str2.each_char do |char|
-    return false unless lettesr[char]
+    return false unless letters[char]
 
-    
+    letters[char] -= 1
+
+    letters.delete(char) if letters[char] == 0
   end
 
   letters.size == 0
