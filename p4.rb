@@ -310,7 +310,24 @@ puts can_tweak_sign?("Choose the bread of life or you are toast", "Teacher farts
 #
 
 def repeated_number_ranges(numbers)
+  result = []
+  current = numbers[0]
+  first_idx = 0
 
+  numbers.each_with_index do |num, idx|
+    next if idx == 0
+
+    if num != current
+      result << [first_idx, idx - 1] if idx - 1 != first_idx
+
+      current = num
+      first_idx = idx
+    end
+  end
+
+  result << [first_idx, numbers.length - 1] if first_idx != numbers.length - 1
+
+  result
 end
 
 puts "-------Repeated Number Ranges-------"
@@ -319,3 +336,8 @@ puts repeated_number_ranges([1, 2, 3, 3, 4]) == [[2, 3]]
 puts repeated_number_ranges([1, 2, 3, 3, 4, 4]) == [[2, 3], [4, 5]]
 puts repeated_number_ranges([1, 1, 1, 2, 3, 3, 4]) == [[0, 2], [4, 5]]
 puts repeated_number_ranges([8, 7, 7, 14, 12, 12, 12, 12, 21]) == [[1, 2], [4, 7]]
+# p repeated_number_ranges([1, 1, 2])
+# p repeated_number_ranges([1, 2, 3, 3, 4])
+# p repeated_number_ranges([1, 2, 3, 3, 4, 4])
+# p repeated_number_ranges([1, 1, 1, 2, 3, 3, 4])
+# p repeated_number_ranges([8, 7, 7, 14, 12, 12, 12, 12, 21])
