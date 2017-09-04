@@ -319,7 +319,6 @@ def repeated_number_ranges(numbers)
 
     if num != current
       result << [first_idx, idx - 1] if idx - 1 != first_idx
-
       current = num
       first_idx = idx
     end
