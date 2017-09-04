@@ -182,7 +182,7 @@ def more_than_n_factors(numbers, n)
   result = []
 
   numbers.each do |number|
-    result << number if find_num_factors(number) > n
+    result << number if find_num_factors(number) >= n
   end
 
   result
@@ -205,6 +205,7 @@ puts "-------More Than N Factors-------"
 puts more_than_n_factors([1, 3, 10, 16], 5) == [16]
 puts more_than_n_factors([1, 3, 10, 16], 2) == [3, 10, 16]
 puts more_than_n_factors([20, 36, 39, 16], 6) == [20, 36]
+# p more_than_n_factors([1, 3, 10, 16], 2)
 
 
 # One-week Wonders
@@ -219,23 +220,35 @@ puts more_than_n_factors([20, 36, 39, 16], 6) == [20, 36]
 # subtract them out.
 require 'set'
 
+# def one_week_wonders(songs)
+#   repeats = Set.new()
+#   songs_set = Set.new()
+#   wonders = []
+#   prev = nil
+#
+#   songs.each do |song|
+#     repeats.add(song) if song == prev
+#     prev = song
+#   end
+#
+#   songs.each do |song|
+#     wonders << song unless repeats.include?(song) || songs_set.include?(song)
+#     songs_set.add(song)
+#   end
+#
+#   wonders
+# end
+
 def one_week_wonders(songs)
-  repeats = Set.new()
-  songs_set = Set.new()
-  wonders = []
+  no_repeats = songs.dup
   prev = nil
 
   songs.each do |song|
-    repeats.add(song) if song == prev
+    no_repeats.delete(song) if prev == song
     prev = song
   end
 
-  songs.each do |song|
-    wonders << song unless repeats.include?(song) || songs_set.include?(song)
-    songs_set.add(song)
-  end
-
-  wonders
+  no_repeats.uniq
 end
 
 top_hits_1 = ["Call Me Maybe", "Protect Ya Neck", "Call Me Maybe", "Protect Ya Neck", "Protect Ya Neck"]
@@ -245,8 +258,8 @@ top_hits_2 = ["Beat It", "Beat It", "Careless Whisper", "Beat It", "Baby", "Baby
 one_week_wonders_2 = ["Careless Whisper", "Never Gonna Give You Up"]
 
 puts "-------One Week Wonders-------"
-p one_week_wonders(top_hits_1)
-p one_week_wonders(top_hits_2)
+# p one_week_wonders(top_hits_1)
+# p one_week_wonders(top_hits_2)
 puts one_week_wonders(top_hits_1) == one_week_wonders_1
 puts one_week_wonders(top_hits_2) == one_week_wonders_2
 
