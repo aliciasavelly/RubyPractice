@@ -1,3 +1,4 @@
+require 'set'
 
 # Price is Right
 # ------------------------------------------------------------------------------
@@ -218,7 +219,6 @@ puts more_than_n_factors([20, 36, 39, 16], 6) == [20, 36]
 #
 # Suggested strategy: find the songs that show up multiple times in a row and
 # subtract them out.
-require 'set'
 
 # def one_week_wonders(songs)
 #   repeats = Set.new()
@@ -270,7 +270,27 @@ puts one_week_wonders(top_hits_2) == one_week_wonders_2
 # Ignore capitalization and punctuation.
 
 def can_tweak_sign?(normal_sign, vandalized_sign)
+  normal_letters = {}
 
+  normal_sign.each_char do |char|
+    if char.downcase.ord >= 97 && char.downcase.ord <= 122
+      if normal_letters[char.downcase]
+        normal_letters[char.downcase] += 1
+      else
+        normal_letters[char.downcase] = 1
+      end
+    end
+  end
+
+  vandalized_sign.each_char do |char|
+    if char.downcase.ord >= 97 && char.downcase.ord <= 122
+      return false unless normal_letters[char.downcase]
+      return false if normal_letters[char.downcase] == 0
+      normal_letters[char.downcase] -= 1
+    end
+  end
+
+  true
 end
 
 def create_hash(sign)
