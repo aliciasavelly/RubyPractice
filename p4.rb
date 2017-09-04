@@ -270,17 +270,7 @@ puts one_week_wonders(top_hits_2) == one_week_wonders_2
 # Ignore capitalization and punctuation.
 
 def can_tweak_sign?(normal_sign, vandalized_sign)
-  normal_letters = {}
-
-  normal_sign.each_char do |char|
-    if char.downcase.ord >= 97 && char.downcase.ord <= 122
-      if normal_letters[char.downcase]
-        normal_letters[char.downcase] += 1
-      else
-        normal_letters[char.downcase] = 1
-      end
-    end
-  end
+  normal_letters = create_hash(normal_sign)
 
   vandalized_sign.each_char do |char|
     if char.downcase.ord >= 97 && char.downcase.ord <= 122
@@ -294,7 +284,17 @@ def can_tweak_sign?(normal_sign, vandalized_sign)
 end
 
 def create_hash(sign)
+  letters_hash = {}
 
+  sign.each_char do |char|
+    d_char = char.downcase
+    next unless d_char.ord >= 97 && d_char.ord <= 122
+
+    letters_hash[d_char] = letters_hash[d_char] ? letters_hash[d_char] + 1 : 1
+
+  end
+
+  letters_hash
 end
 
 puts "-------Sign Tweakers-------"
