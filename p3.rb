@@ -91,14 +91,7 @@ def for_fs_sake(string)
 
   string.split(" ").each do |word|
     word.reverse.each_char.with_index do |char, idx|
-      # p char
-      # p result_idx
-      if char == "f" && idx < result_idx
-        result_word = word
-        result_idx = idx
-        # p result_idx
-        # p result_word
-      end
+      result_word, result_idx = word, idx if char == "f" && idx < result_idx
     end
   end
 
@@ -121,11 +114,34 @@ puts for_fs_sake("pikachu! i choose you!") == ""
 # ------------------------------------------------------------------------------
 
 def time_sums(n)
+  times = []
 
+  hour = 0
+  until hour > 24
+
+    minutes = 0
+    until minutes > 60
+      sum_hour = sum_two_digits(hour)
+      sum_minute = sum_two_digits(minutes)
+      if sum_hour + sum_minute == n
+        time = ""
+
+        time += (hour < 10 ? "0" + hour.to_s + ":" : hour.to_s + ":")
+        time += (minutes < 10 ? "0" + minutes.to_s : minutes.to_s)
+
+        times << time
+      end
+
+      minutes += 1
+    end
+    hour += 1
+  end
+
+  times
 end
 
 def sum_two_digits(num)
-
+  num.to_s[0].to_i + num.to_s[1].to_i
 end
 
 # p sum_two_digits(32)
