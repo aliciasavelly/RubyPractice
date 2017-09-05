@@ -121,6 +121,7 @@ def time_sums(n)
 
     minutes = 0
     until minutes > 60
+      
       sum_hour = sum_two_digits(hour)
       sum_minute = sum_two_digits(minutes)
       if sum_hour + sum_minute == n
