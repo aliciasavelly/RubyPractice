@@ -86,13 +86,30 @@ puts biodiversity_index(["cat", "fly", "dog", "dog", "cat", "cat"]) == 3
 
 
 def for_fs_sake(string)
+  result_word = ""
+  result_idx = string.length
 
+  string.split(" ").each do |word|
+    word.reverse.each_char.with_index do |char, idx|
+      # p char
+      # p result_idx
+      if char == "f" && idx < result_idx
+        result_word = word
+        result_idx = idx
+        # p result_idx
+        # p result_word
+      end
+    end
+  end
+
+  result_word
 end
 
 puts "------For F's Sake------"
 puts for_fs_sake("puff daddy") == "puff"
 puts for_fs_sake("I got a lot of problems with you people! And now you're gonna hear about it!") == "of"
 puts for_fs_sake("fat friars fly fish") == "fat"
+# puts for_fs_sake("fat friars fly fish")
 puts for_fs_sake("the French call him David Plouffe") == "Plouffe"
 puts for_fs_sake("pikachu! i choose you!") == ""
 
