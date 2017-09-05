@@ -184,7 +184,8 @@ p save_the_prisoner(94431605, 679262176, 5284458) # == 23525398
 
 
 def build_power_plants(number_of_cities, plant_range)
-
+  return [] if number_of_cities == 0
+  return [1] if number_of_cities == 1
 end
 
 puts "-------Power Plants-------"
