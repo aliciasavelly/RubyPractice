@@ -186,6 +186,21 @@ p save_the_prisoner(94431605, 679262176, 5284458) # == 23525398
 def build_power_plants(number_of_cities, plant_range)
   return [] if number_of_cities == 0
   return [1] if number_of_cities == 1
+
+  result = Array.new(number_of_cities, 0)
+
+  idx = plant_range
+
+  until idx >= number_of_cities
+    result[idx] = 1
+    idx = idx + (plant_range * 2) + 1
+  end
+  p idx
+  if result[idx - plant_range]
+    result[idx - plant_range] = 1
+  end
+
+  result
 end
 
 puts "-------Power Plants-------"
@@ -204,7 +219,6 @@ puts build_power_plants(5,1) == [0, 1, 0, 1, 0] ||
   build_power_plants(5,1) == [0, 1, 0, 0, 1]
 puts build_power_plants(5,2) == [0, 0, 1, 0, 0]
 puts build_power_plants(10, 2) == [0, 0, 1, 0, 0, 0, 0, 1, 0, 0]
-
-
-
-# puts build_power_plants(12, 2) == [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1]
+puts build_power_plants(12, 2) == [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1] ||
+  build_power_plants(12, 2) == [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0]
+puts build_power_plants(10, 4) == [0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
