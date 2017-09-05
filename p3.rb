@@ -121,7 +121,7 @@ def time_sums(n)
 
     minutes = 0
     until minutes > 60
-      
+
       sum_hour = sum_two_digits(hour)
       sum_minute = sum_two_digits(minutes)
       if sum_hour + sum_minute == n
@@ -159,18 +159,50 @@ puts time_sums(24) == ["19:59"]
 # ------------------------------------------------------------------------------
 # Write a function censor(sentence, curse_words) that censors the words given.
 # Replace the vowels in the curse word with "*".
+require 'set'
 
 def censor(sentence, curse_words)
+  censored = []
 
+  sentence.split(" ").each do |word|
+    # if check_if_curse(word, curse_words)
+    #   censored << censor_word(word)
+    # else
+    #   censored << word
+    # end
+
+    censored << (check_if_curse(word, curse_words) ? censor_word(word) : word)
+  end
+
+  censored.join(" ")
 end
 
 def check_if_curse(word, curse_words)
+  curse_words.each do |curse|
+    return true if word.downcase == curse.downcase
+  end
 
+  false
 end
+
+def censor_word(word)
+  vowels = Set.new(["a", "e", "i", "o", "u"])
+
+  result = word.split("").map do |char|
+    vowels.include?(char) ? "*" : char
+  end
+
+  result.join("")
+end
+
+# p censor_word("alicia")
 
 # p check_if_curse("Darn", ["darn", "gun"]) == false
 # p check_if_curse("squat", ["schnikeys", "diddly", "squat"]) == true
+# p check_if_curse("Schnikeys", ["schnikeys", "diddly", "squat"]) == true
 
 puts "------Censor------"
 puts censor("Darn you Harold you son of a gun", ["darn", "gun"]) == "D*rn you Harold you son of a g*n"
 puts censor("Schnikeys I don't give a diddly squat", ["schnikeys", "diddly", "squat"]) == "Schn*k*ys I don't give a d*ddly sq**t"
+# p censor("Darn you Harold you son of a gun", ["darn", "gun"])
+# p censor("Schnikeys I don't give a diddly squat", ["schnikeys", "diddly", "squat"])
