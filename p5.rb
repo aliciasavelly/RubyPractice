@@ -153,10 +153,10 @@ puts save_the_prisoner(5,2,1) == 2
 puts save_the_prisoner(99, 99, 1) == 99
 puts save_the_prisoner(49, 98, 2) == 1
 puts save_the_prisoner(94431605, 679262176, 5284458) == 23525398
-p save_the_prisoner(5,2,1) # == 2
-p save_the_prisoner(99, 99, 1) # == 99
-p save_the_prisoner(49, 98, 2) # == 1
-p save_the_prisoner(94431605, 679262176, 5284458) # == 23525398
+# p save_the_prisoner(5,2,1) # == 2
+# p save_the_prisoner(99, 99, 1) # == 99
+# p save_the_prisoner(49, 98, 2) # == 1
+# p save_the_prisoner(94431605, 679262176, 5284458) # == 23525398
 
 
 ##################
