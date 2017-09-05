@@ -68,11 +68,8 @@ end
 
 puts "------Biodiversity------"
 puts biodiversity_index(["cat"]) == 1
-# 1 ** 2 * 1 / 1
 puts biodiversity_index(["cat", "cat", "cat"]) == 1
-# 1 ** 2 * 3 / 3
 puts biodiversity_index(["cat", "cat", "dog"]) == 2
-# 2 ** 2 * 1 / 2
 puts biodiversity_index(["cat", "fly", "dog"]) == 9
 puts biodiversity_index(["cat", "fly", "dog", "dog", "cat", "cat"]) == 3
 
@@ -187,7 +184,7 @@ def censor_word(word)
 end
 
 # p censor_word("alicia")
-# p check_if_curse("Darn", ["darn", "gun"]) == false
+# p check_if_curse("meow", ["darn", "gun"]) == false
 # p check_if_curse("squat", ["schnikeys", "diddly", "squat"]) == true
 # p check_if_curse("Schnikeys", ["schnikeys", "diddly", "squat"]) == true
 
