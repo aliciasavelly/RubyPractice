@@ -17,7 +17,7 @@ def substring(str1, str2)
 
   while i <= str1.length - str2.length
     return true if str1[i...j] == str2
-    
+
     i += 1
     j += 1
   end
@@ -42,18 +42,37 @@ puts in_all_strings?(["axe", "ajax", "axl rose"], "ax") == true
 # ------------------------------------------------------------------------------
 
 def biodiversity_index(specimens)
-
+  count = animal_count(specimens)
+  count[0] ** 2 * count[1] / count[2]
 end
 
 def animal_count(specimens)
+  animal_set = {}
 
+  specimens.each do |specimen|
+    animal_set[specimen] = animal_set[specimen] ? animal_set[specimen] + 1 : 1
+  end
+
+  result = [animal_set.size]
+
+  greatest = -1
+  least = specimens.length + 1
+  animal_set.each do |key, val|
+    greatest = val if val > greatest
+    least = val if val < least
+  end
+
+  [animal_set.size, least, greatest]
 end
 
 
 puts "------Biodiversity------"
 puts biodiversity_index(["cat"]) == 1
+# 1 ** 2 * 1 / 1
 puts biodiversity_index(["cat", "cat", "cat"]) == 1
+# 1 ** 2 * 3 / 3
 puts biodiversity_index(["cat", "cat", "dog"]) == 2
+# 2 ** 2 * 1 / 2
 puts biodiversity_index(["cat", "fly", "dog"]) == 9
 puts biodiversity_index(["cat", "fly", "dog", "dog", "cat", "cat"]) == 3
 
