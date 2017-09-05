@@ -159,18 +159,11 @@ puts time_sums(24) == ["19:59"]
 # ------------------------------------------------------------------------------
 # Write a function censor(sentence, curse_words) that censors the words given.
 # Replace the vowels in the curse word with "*".
-require 'set'
 
 def censor(sentence, curse_words)
   censored = []
 
   sentence.split(" ").each do |word|
-    # if check_if_curse(word, curse_words)
-    #   censored << censor_word(word)
-    # else
-    #   censored << word
-    # end
-
     censored << (check_if_curse(word, curse_words) ? censor_word(word) : word)
   end
 
@@ -188,15 +181,12 @@ end
 def censor_word(word)
   vowels = Set.new(["a", "e", "i", "o", "u"])
 
-  result = word.split("").map do |char|
+  word.split("").map do |char|
     vowels.include?(char) ? "*" : char
-  end
-
-  result.join("")
+  end.join("")
 end
 
 # p censor_word("alicia")
-
 # p check_if_curse("Darn", ["darn", "gun"]) == false
 # p check_if_curse("squat", ["schnikeys", "diddly", "squat"]) == true
 # p check_if_curse("Schnikeys", ["schnikeys", "diddly", "squat"]) == true
