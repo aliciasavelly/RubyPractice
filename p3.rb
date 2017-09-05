@@ -4,11 +4,25 @@ require 'set'
 # Check if a short_string is a substring of ALL of the long_strings
 
 def in_all_strings?(long_strings, short_string)
+  long_strings.each do |string|
+    return false unless substring(string, short_string)
+  end
 
+  true
 end
 
 def substring(str1, str2)
-  
+  i = 0
+  j = str2.length
+
+  while i <= str1.length - str2.length
+    return true if str1[i...j] == str2
+    
+    i += 1
+    j += 1
+  end
+
+  false
 end
 
 puts "---------In All Strings-------"
